@@ -1,9 +1,10 @@
 package org.udg.pds.springtodo.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity(name="usergroup")
 public class Group implements Serializable {
@@ -15,9 +16,16 @@ public class Group implements Serializable {
         this.description = description;
     }
 
+    @JsonView(Views.Private.class)
     public Long getId(){return id;}
 
     public void setOwner(User user){this.owner=user;}
+
+    @JsonView(Views.Private.class)
+    public String getName(){return name;}
+
+    @JsonView(Views.Private.class)
+    public String getDescription(){return description;}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

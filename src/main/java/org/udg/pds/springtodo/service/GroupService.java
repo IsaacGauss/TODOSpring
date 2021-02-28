@@ -9,6 +9,8 @@ import org.udg.pds.springtodo.entity.IdObject;
 import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.repository.GroupRepository;
 
+import java.util.Collection;
+
 
 @Service
 public class GroupService {
@@ -38,5 +40,7 @@ public class GroupService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    public Collection<Group> getOwnerGroups(Long id){return userService.getUser(id).getOwnerGroups();}
 
 }
