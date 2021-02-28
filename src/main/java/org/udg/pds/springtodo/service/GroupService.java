@@ -69,4 +69,6 @@ public class GroupService {
 
     public Collection<Group> getOwnerGroups(Long id){return userService.getUser(id).getOwnerGroups();}
 
+    public Collection<Group> getMemberGroups(Long id){return userService.getUser(id).getMemberGroups();}
+
 }

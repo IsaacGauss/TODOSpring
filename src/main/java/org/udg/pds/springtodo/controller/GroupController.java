@@ -44,6 +44,13 @@ public class GroupController extends BaseController{
         return BaseController.OK_MESSAGE;
     }
 
+    @GetMapping(path="/members")
+    @JsonView(Views.Private.class)
+    public Collection<Group> listAllMemberGroups(HttpSession session){
+        Long userId = getLoggedUser(session);
+        return groupService.getMemberGroups(userId);
+    }
+
     static class R_Group{
 
         @NotNull
