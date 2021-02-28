@@ -26,6 +26,7 @@ public class User implements Serializable {
     this.password = password;
     this.tasks = new ArrayList<>();
     this.groups = new ArrayList<>();
+    this.member_groups = new ArrayList<>();
   }
 
   @Id
@@ -94,5 +95,7 @@ public class User implements Serializable {
   }
 
   public void addGroup(Group group){groups.add(group);}
+
+  public void addGroupMember(Group group){member_groups.add(group);}
 
 }

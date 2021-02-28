@@ -37,6 +37,13 @@ public class GroupController extends BaseController{
         return groupService.getOwnerGroups(userId);
     }
 
+    @PostMapping(path="/{gid}/members/{uid}")
+    public String addMember(HttpSession session, @PathVariable("gid") Long groupId, @PathVariable("uid") Long memberId){
+        Long userId=getLoggedUser(session);
+        groupService.addMember(userId,groupId,memberId);
+        return BaseController.OK_MESSAGE;
+    }
+
     static class R_Group{
 
         @NotNull
