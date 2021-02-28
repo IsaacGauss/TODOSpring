@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.udg.pds.springtodo.controller.exceptions.ControllerException;
 import org.udg.pds.springtodo.entity.Group;
 import org.udg.pds.springtodo.entity.IdObject;
+import org.udg.pds.springtodo.entity.User;
 import org.udg.pds.springtodo.entity.Views;
 import org.udg.pds.springtodo.service.GroupService;
 
@@ -49,6 +50,13 @@ public class GroupController extends BaseController{
     public Collection<Group> listAllMemberGroups(HttpSession session){
         Long userId = getLoggedUser(session);
         return groupService.getMemberGroups(userId);
+    }
+
+    @GetMapping(path="{gid}/members")
+    @JsonView(Views.Private.class)
+    public Collection<User> listAllMembers(HttpSession session, @PathVariable("gid") Long groupId){
+        Long userId=getLoggedUser(session);
+        return groupService.getGroupMembers(userId,groupId);
     }
 
     static class R_Group{

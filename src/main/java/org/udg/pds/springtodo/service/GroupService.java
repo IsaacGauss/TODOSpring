@@ -71,4 +71,11 @@ public class GroupService {
 
     public Collection<Group> getMemberGroups(Long id){return userService.getUser(id).getMemberGroups();}
 
+    public Collection<User> getGroupMembers(Long userId,Long groupId){
+        Group group=this.getGroup(groupId);
+        if(group.getOwner().getId()!=userId && !group.getMembers().contains(userService.getUser(userId)))
+            throw new ServiceException("This user is not the owner or a member of the group");
+            return group.getMembers();
+    }
+
 }

@@ -28,6 +28,12 @@ public class Group implements Serializable {
     public void addMember(User user){members.add(user);}
 
     @JsonView(Views.Private.class)
+    public Collection<User> getMembers(){
+        members.size();
+        return members;
+    }
+
+    @JsonView(Views.Private.class)
     public String getName(){return name;}
 
     @JsonView(Views.Private.class)
