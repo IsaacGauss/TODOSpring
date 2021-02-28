@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity(name="usergroup")
 public class Group implements Serializable {
@@ -43,5 +44,8 @@ public class Group implements Serializable {
 
     @Column(name = "fk_user", insertable = false, updatable = false)
     private Long userId;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Collection<User> members;
 
 }

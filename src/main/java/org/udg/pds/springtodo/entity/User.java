@@ -47,6 +47,9 @@ public class User implements Serializable {
   @OneToMany(cascade=CascadeType.ALL, mappedBy="owner")
   private Collection<Group> groups;
 
+  @ManyToMany(cascade=CascadeType.ALL, mappedBy="members")
+  private Collection<Group> member_groups;
+
   @JsonView(Views.Private.class)
   public Long getId() {
     return id;
